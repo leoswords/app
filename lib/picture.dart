@@ -9,14 +9,21 @@ class Picture {
 }
 
 class PictureWidget extends StatelessWidget {
-  PictureWidget(this.pec) : super(key: ObjectKey(pec));
+  PictureWidget(this._picture) : super(key: ObjectKey(_picture));
 
-  final Picture pec;
+  final Picture _picture;
 
   @override
   Widget build(BuildContext context) {
-    Picture s = Picture("sdf", "sdf", "sdf");
-
-    return Container();
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(_picture.img),
+          Text(_picture.text),
+          Text(_picture.value),
+        ],
+      ),
+    );
   }
 }
