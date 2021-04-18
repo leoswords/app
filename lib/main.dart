@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:leos_words/button.dart';
 import 'package:leos_words/page.dart' as p;
-import 'package:leos_words/picture.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -10,22 +10,35 @@ void main() {
         appBar: AppBar(
           title: Text("supsup"),
         ),
-        body: p.PageWidget(p.Page("", [
+        body: p.PageWidget(p.Page("Page1", [
           [
-            Picture("img", "text", "value"),
-            Picture("img", "a", "a"),
-            Picture("img", "a2", "a2")
+            Button(label: "clear"),
+            Button(label: "Questions"),
+            Button(label: "People"),
+            Button(label: "Time"),
+            Button(label: "Places"),
           ],
           [
-            Picture("img", "textb", "valueb"),
-            Picture("img", "b", "b"),
-            Picture("img", "b2", "b2")
+            Button(label: "I", message: "I"),
+            Button(label: "I want", message: "I want"),
+            Button(label: "Actions"),
+            Button(label: "Social"),
+            Button(label: "ABC 123"),
           ],
           [
-            Picture("img", "textc", "valuec"),
-            Picture("img", "c", "c"),
-            Picture("img", "c2", "c2")
+            Button(label: "it", message: "it"),
+            Button(label: "I like", message: "I like"),
+            Button(label: "can", message: "can"),
+            Button(label: "do", message: "do"),
+            Button(label: "Describe"),
           ],
+          [
+            Button(label: "you", message: "you"),
+            Button(label: "I need", message: "I need"),
+            Button(label: "Extra"),
+            Button(label: ".", message: "."),
+            Button(label: "Groups"),
+          ]
         ])),
       )));
 }
