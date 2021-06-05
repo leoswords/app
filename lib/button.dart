@@ -1,11 +1,15 @@
 import 'package:flutter/widgets.dart';
 
 class Button {
-  Button({this.label, this.message});
+  Button({this.label, this.message, required this.onTouch});
 
   String? label;
   String? message;
+  OnTouch onTouch;
 }
+
+// Actions!
+typedef void OnTouch(String? message);
 
 class ButtonWidget extends StatelessWidget {
   ButtonWidget(this._button) : super(key: ObjectKey(_button));
@@ -15,12 +19,15 @@ class ButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var label = _button.label;
-    if (label == null) {
-      return SizedBox(
-        child: Container(),
-        height: 100,
-      );
-    }
-    return SizedBox(height: 100, child: Center(child: Text(label)));
+    var child = label == null
+        ? SizedBox(
+            child: Container(),
+            height: 100,
+          )
+        : SizedBox(height: 100, child: Center(child: Text(label)));
+    return GestureDetector(
+      onTap: () => _button.onTouch(_button.message),
+      child: child,
+    );
   }
 }
