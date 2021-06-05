@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class Button {
@@ -24,10 +25,14 @@ class ButtonWidget extends StatelessWidget {
             child: Container(),
             height: 100,
           )
-        : SizedBox(height: 100, child: Center(child: Text(label)));
-    return GestureDetector(
-      onTap: () => _button.onTouch(_button.message),
-      child: child,
-    );
+        : InkWell(
+            onTap: () => _button.onTouch(_button.message),
+            child: SizedBox(
+              height: 100,
+              child: Center(
+                child: Text(label),
+              ),
+            ));
+    return child;
   }
 }
