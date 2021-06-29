@@ -1,29 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:leos_words/app.dart';
 import 'package:random_color/random_color.dart';
-
-// Actions!
-typedef void OnTouch(String? message);
 
 class Button {
   String label;
   String message;
-  OnTouch onTouch;
 
-  Button({required this.label, message, required this.onTouch})
-      : this.message = message ?? label;
+  Button({required this.label, message}) : this.message = message ?? label;
 }
 
 class ButtonWidget extends StatelessWidget {
   final Button _button;
+  final OnTouch _onTouch;
 
-  ButtonWidget(this._button);
+  ButtonWidget(this._button, this._onTouch);
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
         child: GestureDetector(
-            onTap: () => _button.onTouch(_button.message),
+            onTap: () => _onTouch(_button),
             child: Container(
               color: RandomColor().randomMaterialColor().shade900,
               child: Center(

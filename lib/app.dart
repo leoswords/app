@@ -8,13 +8,15 @@ class App extends StatefulWidget {
   _App createState() => _App();
 }
 
+typedef void OnTouch(Button button);
+
 class _App extends State<App> {
   final FlutterTts flutterTts = FlutterTts();
   String? _message;
 
-  void _onTouch(String? msg) {
+  void _onTouch(Button button) {
     setState(() {
-      _message = msg;
+      _message = button.message;
     });
   }
 
@@ -35,36 +37,38 @@ class _App extends State<App> {
         theme: ThemeData.dark(),
         home: Scaffold(
           appBar: bar,
-          body: p.PageWidget(p.Page("Page1", [
-            [
-              Button(label: "clear", onTouch: _onTouch),
-              Button(label: "Questions", onTouch: _onTouch),
-              Button(label: "People", onTouch: _onTouch),
-              Button(label: "Time", onTouch: _onTouch),
-              Button(label: "Places", onTouch: _onTouch),
-            ],
-            [
-              Button(label: "I", message: "I", onTouch: _onTouch),
-              Button(label: "I want", message: "I want", onTouch: _onTouch),
-              Button(label: "Actions", onTouch: _onTouch),
-              Button(label: "Social", onTouch: _onTouch),
-              Button(label: "ABC 123", onTouch: _onTouch),
-            ],
-            [
-              Button(label: "it", message: "it", onTouch: _onTouch),
-              Button(label: "I like", message: "I like", onTouch: _onTouch),
-              Button(label: "can", message: "can", onTouch: _onTouch),
-              Button(label: "do", message: "do", onTouch: _onTouch),
-              Button(label: "Describe", onTouch: _onTouch),
-            ],
-            [
-              Button(label: "you", message: "you", onTouch: _onTouch),
-              Button(label: "I need", message: "I need", onTouch: _onTouch),
-              Button(label: "Extra", onTouch: _onTouch),
-              Button(label: ".", message: ".", onTouch: _onTouch),
-              Button(label: "Groups", onTouch: _onTouch),
-            ]
-          ])),
+          body: p.PageWidget(
+              _onTouch,
+              p.Page("Page1", [
+                [
+                  Button(label: "clear"),
+                  Button(label: "Questions"),
+                  Button(label: "People"),
+                  Button(label: "Time"),
+                  Button(label: "Places"),
+                ],
+                [
+                  Button(label: "I", message: "I"),
+                  Button(label: "I want", message: "I want"),
+                  Button(label: "Actions"),
+                  Button(label: "Social"),
+                  Button(label: "ABC 123"),
+                ],
+                [
+                  Button(label: "it", message: "it"),
+                  Button(label: "I like", message: "I like"),
+                  Button(label: "can", message: "can"),
+                  Button(label: "do", message: "do"),
+                  Button(label: "Describe"),
+                ],
+                [
+                  Button(label: "you", message: "you"),
+                  Button(label: "I need", message: "I need"),
+                  Button(label: "Extra"),
+                  Button(label: ".", message: "."),
+                  Button(label: "Groups"),
+                ]
+              ])),
         ));
   }
 }
