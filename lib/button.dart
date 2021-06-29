@@ -25,7 +25,7 @@ class ButtonWidget extends StatelessWidget {
         child: GestureDetector(
             onTap: () => _button.onTouch(_button.message),
             child: Container(
-              color: RandomColor().randomMaterialColor(),
+              color: RandomColor().randomMaterialColor().shade900,
               child: Center(
                 child: Text(_button.label),
               ),

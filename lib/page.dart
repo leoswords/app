@@ -20,8 +20,8 @@ class PageWidget extends StatelessWidget {
       children: _page.buttons
           .map((rows) => rows.map((cell) => ButtonWidget(cell)).toList())
           .map((cells) => Flexible(
-                child: Row(children: cells),
                 flex: 10,
+                child: Row(children: cells),
               ))
           .toList(),
     );
