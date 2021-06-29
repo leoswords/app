@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:random_color/random_color.dart';
 
 // Actions!
 typedef void OnTouch(String? message);
@@ -20,14 +21,14 @@ class ButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-        onTap: () => _button.onTouch(_button.message),
-        child: SizedBox(
-          height: 100,
-          child: Center(
-            child: Text(_button.label),
-          ),
-        ));
-    ;
+    return Expanded(
+        child: GestureDetector(
+            onTap: () => _button.onTouch(_button.message),
+            child: Container(
+              color: RandomColor().randomMaterialColor(),
+              child: Center(
+                child: Text(_button.label),
+              ),
+            )));
   }
 }

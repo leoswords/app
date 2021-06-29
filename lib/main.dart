@@ -1,27 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:leos_words/app.dart';
 import 'package:random_color/random_color.dart';
 
 void main() {
-  runApp(MaterialApp(
-      title: 'Leo\'s Words',
-      theme: ThemeData.dark(),
-      home: Scaffold(
-          body: Column(
-        children: [
-          Flexible(
-              flex: 12,
-              child: Container(
-                color: RandomColor().randomMaterialColor().shade500,
-                child: Center(
-                  child: Text('First'),
-                ),
-              )),
-          tableRow(),
-          tableRow(),
-          tableRow(),
-          tableRow(),
-        ],
-      ))));
+  //runApp(materialApp());
+  runApp(App());
+}
+
+MaterialApp materialApp() {
+  return MaterialApp(
+    title: 'Leo\'s Words',
+    theme: ThemeData.dark(),
+    home: Scaffold(
+        body: Column(
+      children: [
+        Flexible(
+            flex: 12,
+            child: Container(
+              color: RandomColor().randomMaterialColor().shade500,
+              child: Center(
+                child: Text('First'),
+              ),
+            )),
+        tableRow(),
+        tableRow(),
+        tableRow(),
+        tableRow(),
+      ],
+    )));
 }
 
 Widget tableRow() {

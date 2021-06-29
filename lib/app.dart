@@ -23,11 +23,11 @@ class _App extends State<App> {
     var bar = AppBar(
       toolbarHeight: 100,
       centerTitle: false,
-      title: GestureDetector(
+      title: Container(
         child: _message != null ? Text(_message!) : null,
-        onTap: () => {
+        /*onTap: () => {
           if (_message != null) {flutterTts.speak(_message!)}
-        },
+        },*/
       ),
     );
     return MaterialApp(

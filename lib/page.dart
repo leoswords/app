@@ -3,10 +3,10 @@ import 'package:flutter/widgets.dart';
 import 'package:leos_words/button.dart';
 
 class Page {
-  const Page(this.name, this.pictures);
+  const Page(this.name, this.buttons);
 
   final String name;
-  final List<List<Button>> pictures;
+  final List<List<Button>> buttons;
 }
 
 class PageWidget extends StatelessWidget {
@@ -16,15 +16,14 @@ class PageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var table = Table(
-      children: _page.pictures
+    return Column(
+      children: _page.buttons
           .map((rows) => rows.map((cell) => ButtonWidget(cell)).toList())
-          .map((cells) => TableRow(children: cells))
+          .map((cells) => Flexible(
+                child: Row(children: cells),
+                flex: 10,
+              ))
           .toList(),
-      defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-      border: TableBorder.all(),
     );
-
-    return table;
   }
 }
