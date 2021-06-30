@@ -2,5 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:leos_words/app.dart';
 
 void main() {
-  runApp(App());
+  App app = App();
+  runApp(MaterialApp(
+      title: 'Leo\'s Words',
+      theme: ThemeData.dark(),
+      home: Scaffold(
+        body: app,
+      )));
 }

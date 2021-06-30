@@ -20,11 +20,11 @@ class PageWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: _page.buttons
-          .map((rows) =>
-              rows.map((cell) => ButtonWidget(cell, _onTouch)).toList())
-          .map((cells) => Flexible(
+          .map((buttons) =>
+              buttons.map((button) => ButtonWidget(button, _onTouch)).toList())
+          .map((buttons) => Flexible(
                 flex: 10,
-                child: Row(children: cells),
+                child: Row(children: buttons),
               ))
           .toList(),
     );
