@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:leos_words/app.dart';
-import 'package:random_color/random_color.dart';
 
 class Button {
   String label;
@@ -22,7 +21,7 @@ class ButtonWidget extends StatelessWidget {
         child: GestureDetector(
             onTap: () => _onTouch(_button),
             child: Container(
-              color: RandomColor().randomMaterialColor().shade900,
+              decoration: BoxDecoration(border: Border.all()),
               child: Center(
                 child: Text(_button.label),
               ),
