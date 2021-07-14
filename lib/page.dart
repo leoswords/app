@@ -18,15 +18,15 @@ class PageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: _page.buttons
-          .map((buttons) =>
-              buttons.map((button) => ButtonWidget(button, _onTouch)).toList())
-          .map((buttons) => Flexible(
-                flex: 10,
-                child: Row(children: buttons),
-              ))
-          .toList(),
-    );
+    var rows = _page.buttons
+        .map((buttons) => buttons
+            .map((button) => Expanded(
+                child: GestureDetector(
+                    onTap: () => _onTouch(button),
+                    child: ButtonWidget(button))))
+            .toList())
+        .map((buttons) => Expanded(child: Row(children: buttons)))
+        .toList();
+    return Column(children: rows);
   }
 }
