@@ -22,16 +22,16 @@ class _App extends State<App> {
 
   @override
   Widget build(BuildContext context) {
-    var bar = AppBar(
-      toolbarHeight: 100,
-      centerTitle: false,
-      title: Container(
-        child: _message != null ? Text(_message!) : null,
-        /*onTap: () => {
-          if (_message != null) {flutterTts.speak(_message!)}
-        },*/
-      ),
-    );
+    var bar = Row(children: [
+      Expanded(
+          child: GestureDetector(
+              child: Container(
+                  child: Center(
+                      child: _message != null ? Text(_message!) : Container())),
+              onTap: () => {
+                    if (_message != null) {flutterTts.speak(_message!)}
+                  }))
+    ]);
     var pageWidget = p.PageWidget(_onTouch, getPage());
     //return pageWidget;
     return Column(
