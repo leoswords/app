@@ -25,13 +25,32 @@ class _App extends State<App> {
   @override
   Widget build(BuildContext context) {
     var bar = Row(children: [
-      Expanded(
+      Flexible(
+          flex: 90,
           child: GestureDetector(
               behavior: HitTestBehavior.translucent,
               child: Center(child: Text(_message)),
               onTap: () => {
-                    if (_message.isNotEmpty) {flutterTts.speak(_message)}
-                  }))
+                    if (_message.trim().isNotEmpty) {flutterTts.speak(_message)}
+                  })),
+      Flexible(
+          flex: 10,
+          child: GestureDetector(
+            behavior: HitTestBehavior.translucent,
+            child: const Center(child: Text('X')),
+            onTap: () {
+              setState(() {
+                var words = _message.split(RegExp(r'\s+'));
+                words.removeLast();
+                _message = words.join(" ");
+              });
+            },
+            onLongPress: () {
+              setState(() {
+                _message = "";
+              });
+            },
+          ))
     ]);
     var pageWidget = p.PageWidget(_onTouch, getPage());
     //return pageWidget;
