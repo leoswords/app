@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+@immutable
 class Button {
-  String label;
-  String message;
+  final String label;
+  final String message;
 
-  Button({required this.label, message}) : message = message ?? label;
+  const Button({required this.label, message}) : message = message ?? label;
 }
 
 class ButtonWidget extends StatelessWidget {

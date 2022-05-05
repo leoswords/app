@@ -14,11 +14,11 @@ typedef OnTouch = void Function(Button button);
 
 class _App extends State<App> {
   final FlutterTts flutterTts = FlutterTts();
-  String? _message;
+  String _message = '';
 
   void _onTouch(Button button) {
     setState(() {
-      _message = button.message;
+      _message += ' ' + button.message;
     });
   }
 
@@ -27,10 +27,9 @@ class _App extends State<App> {
     var bar = Row(children: [
       Expanded(
           child: GestureDetector(
-              child: Center(
-                  child: _message != null ? Text(_message!) : Container()),
+              child: Center(child: Text(_message)),
               onTap: () => {
-                    if (_message != null) {flutterTts.speak(_message!)}
+                    if (_message.isNotEmpty) {flutterTts.speak(_message)}
                   }))
     ]);
     var pageWidget = p.PageWidget(_onTouch, getPage());
@@ -44,7 +43,7 @@ class _App extends State<App> {
   }
 
   p.Page getPage() {
-    return p.Page("Page1", [
+    return const p.Page("Page1", [
       [
         Button(label: "clear"),
         Button(label: "Questions"),
