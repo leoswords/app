@@ -28,7 +28,7 @@ class _App extends State<App> {
       Flexible(
           flex: 90,
           child: GestureDetector(
-              behavior: HitTestBehavior.translucent,
+              behavior: HitTestBehavior.opaque,
               child: Center(child: Text(_message)),
               onTap: () => {
                     if (_message.trim().isNotEmpty) {flutterTts.speak(_message)}
@@ -36,8 +36,8 @@ class _App extends State<App> {
       Flexible(
           flex: 10,
           child: GestureDetector(
-            behavior: HitTestBehavior.translucent,
-            child: const Center(child: Text('X')),
+            behavior: HitTestBehavior.opaque,
+            child: const Center(child: Icon(Icons.backspace)),
             onTap: () {
               setState(() {
                 var words = _message.split(RegExp(r'\s+'));
