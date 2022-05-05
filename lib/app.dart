@@ -27,6 +27,7 @@ class _App extends State<App> {
     var bar = Row(children: [
       Expanded(
           child: GestureDetector(
+              behavior: HitTestBehavior.translucent,
               child: Center(child: Text(_message)),
               onTap: () => {
                     if (_message.isNotEmpty) {flutterTts.speak(_message)}
