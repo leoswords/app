@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:leoswords/bar.dart';
 import 'package:leoswords/button.dart';
+import 'package:leoswords/models/speech_bar.dart';
 import 'package:leoswords/page.dart' as p;
 import 'package:provider/provider.dart';
 
@@ -15,9 +15,11 @@ class App extends StatelessWidget {
           child: GestureDetector(
             behavior: HitTestBehavior.opaque,
             child: Center(
-                child: Consumer<BarModel>(
-                    builder: (context, cart, child) => Text(cart.value))),
-            onTap: () => Provider.of<BarModel>(context, listen: false).speak(),
+                child: Consumer<SpeechBarModel>(
+                    builder: (context, speechBar, child) =>
+                        Text(speechBar.value))),
+            onTap: () =>
+                Provider.of<SpeechBarModel>(context, listen: false).speak(),
           )),
       Flexible(
           flex: 10,
@@ -25,9 +27,9 @@ class App extends StatelessWidget {
             behavior: HitTestBehavior.opaque,
             child: const Center(child: Icon(Icons.backspace)),
             onTap: () =>
-                Provider.of<BarModel>(context, listen: false).backspace(),
+                Provider.of<SpeechBarModel>(context, listen: false).backspace(),
             onLongPress: () =>
-                Provider.of<BarModel>(context, listen: false).clear(),
+                Provider.of<SpeechBarModel>(context, listen: false).clear(),
           ))
     ]);
 

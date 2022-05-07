@@ -3,7 +3,7 @@ import 'dart:collection';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 
-class BarModel extends ChangeNotifier {
+class SpeechBarModel extends ChangeNotifier {
   final DoubleLinkedQueue _list = DoubleLinkedQueue<String>();
   final FlutterTts _tts = FlutterTts();
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:leoswords/app.dart';
-import 'package:leoswords/bar.dart';
+import 'package:leoswords/models/speech_bar.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -9,7 +9,7 @@ void main() {
       theme: ThemeData.dark(),
       home: Scaffold(
         body: ChangeNotifierProvider(
-          create: (context) => BarModel(),
+          create: (context) => SpeechBarModel(),
           child: const App(),
         ),
       )));
