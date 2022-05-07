@@ -1,26 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_tts/flutter_tts.dart';
+import 'package:leoswords/bar.dart';
 import 'package:leoswords/button.dart';
 import 'package:leoswords/page.dart' as p;
+import 'package:provider/provider.dart';
 
-class App extends StatefulWidget {
+class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
-
-  @override
-  _App createState() => _App();
-}
-
-typedef OnTouch = void Function(Button button);
-
-class _App extends State<App> {
-  final FlutterTts flutterTts = FlutterTts();
-  String _message = '';
-
-  void _onTouch(Button button) {
-    setState(() {
-      _message += ' ' + button.message;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,31 +13,25 @@ class _App extends State<App> {
       Flexible(
           flex: 90,
           child: GestureDetector(
-              behavior: HitTestBehavior.opaque,
-              child: Center(child: Text(_message)),
-              onTap: () => {
-                    if (_message.trim().isNotEmpty) {flutterTts.speak(_message)}
-                  })),
+            behavior: HitTestBehavior.opaque,
+            child: Center(
+                child: Consumer<BarModel>(
+                    builder: (context, cart, child) => Text(cart.value))),
+            onTap: () => Provider.of<BarModel>(context, listen: false).speak(),
+          )),
       Flexible(
           flex: 10,
           child: GestureDetector(
             behavior: HitTestBehavior.opaque,
             child: const Center(child: Icon(Icons.backspace)),
-            onTap: () {
-              setState(() {
-                var words = _message.split(RegExp(r'\s+'));
-                words.removeLast();
-                _message = words.join(" ");
-              });
-            },
-            onLongPress: () {
-              setState(() {
-                _message = "";
-              });
-            },
+            onTap: () =>
+                Provider.of<BarModel>(context, listen: false).backspace(),
+            onLongPress: () =>
+                Provider.of<BarModel>(context, listen: false).clear(),
           ))
     ]);
-    var pageWidget = p.PageWidget(_onTouch, getPage());
+
+    var pageWidget = p.PageWidget(getPage());
     //return pageWidget;
     return Column(
       children: [

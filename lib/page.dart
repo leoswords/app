@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:leoswords/app.dart';
+import 'package:leoswords/bar.dart';
 import 'package:leoswords/button.dart';
+import 'package:provider/provider.dart';
 
 class Page {
   final String name;
@@ -12,9 +13,8 @@ class Page {
 
 class PageWidget extends StatelessWidget {
   final Page _page;
-  final OnTouch _onTouch;
 
-  PageWidget(this._onTouch, this._page) : super(key: ObjectKey(_page));
+  PageWidget(this._page) : super(key: ObjectKey(_page));
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,8 @@ class PageWidget extends StatelessWidget {
         .map((buttons) => buttons
             .map((button) => Expanded(
                 child: GestureDetector(
-                    onTap: () => _onTouch(button),
+                    onTap: () => Provider.of<BarModel>(context, listen: false)
+                        .add(button.message),
                     child: ButtonWidget(button))))
             .toList())
         .map((buttons) => Expanded(child: Row(children: buttons)))
