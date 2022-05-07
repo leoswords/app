@@ -15,15 +15,17 @@ class BarModel extends ChangeNotifier {
   }
 
   void backspace() {
+    if (_list.isEmpty) return;
     _list.removeLast();
     notifyListeners();
   }
 
   void speak() {
-    _tts.speak(value);
+    if (_list.isNotEmpty) _tts.speak(value);
   }
 
   void clear() {
+    if (_list.isEmpty) return;
     _list.clear();
     notifyListeners();
   }
