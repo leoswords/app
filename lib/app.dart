@@ -1,35 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:leoswords/button.dart';
-import 'package:leoswords/models/speech_bar.dart';
+import 'package:leoswords/main.dart';
 import 'package:leoswords/page.dart' as p;
-import 'package:provider/provider.dart';
 
-class App extends StatelessWidget {
+class App extends ConsumerWidget {
   const App({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     var bar = Row(children: [
       Flexible(
           flex: 90,
           child: GestureDetector(
             behavior: HitTestBehavior.opaque,
-            child: Center(
-                child: Consumer<SpeechBarModel>(
-                    builder: (context, speechBar, child) =>
-                        Text(speechBar.value))),
-            onTap: () =>
-                Provider.of<SpeechBarModel>(context, listen: false).speak(),
+            child: Center(child: Text(ref.watch(barProvider).join(" "))),
+            onTap: () => ref.read(barProvider.notifier).speak(),
           )),
       Flexible(
           flex: 10,
           child: GestureDetector(
             behavior: HitTestBehavior.opaque,
             child: const Center(child: Icon(Icons.backspace)),
-            onTap: () =>
-                Provider.of<SpeechBarModel>(context, listen: false).backspace(),
-            onLongPress: () =>
-                Provider.of<SpeechBarModel>(context, listen: false).clear(),
+            onTap: () => ref.read(barProvider.notifier).backspace(),
+            onLongPress: () => ref.read(barProvider.notifier).clear(),
           ))
     ]);
 

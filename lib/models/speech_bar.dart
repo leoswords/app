@@ -1,32 +1,29 @@
-import 'dart:collection';
-
-import 'package:flutter/foundation.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 
-class SpeechBarModel extends ChangeNotifier {
-  final DoubleLinkedQueue _list = DoubleLinkedQueue<String>();
+class SpeechBarModel extends StateNotifier<List<String>> {
+  SpeechBarModel(this.ref) : super([]);
+
+  final Ref ref;
   final FlutterTts _tts = FlutterTts();
 
-  String get value => _list.join(" ");
+  String get value => state.join(" ");
 
   void add(String value) {
-    _list.add(value);
-    notifyListeners();
+    state = [...state, value];
   }
 
   void backspace() {
-    if (_list.isEmpty) return;
-    _list.removeLast();
-    notifyListeners();
+    if (state.isEmpty) return;
+    state = state.sublist(0, state.length - 1);
   }
 
   void speak() {
-    if (_list.isNotEmpty) _tts.speak(value);
+    if (state.isNotEmpty) _tts.speak(value);
   }
 
   void clear() {
-    if (_list.isEmpty) return;
-    _list.clear();
-    notifyListeners();
+    if (state.isEmpty) return;
+    state = [];
   }
 }

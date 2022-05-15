@@ -21,8 +21,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  provider: ^6.0.2
   flutter_tts: ^3.3.3
+  flutter_riverpod: ^1.0.3
 
 dev_dependencies:
   flutter_test:
