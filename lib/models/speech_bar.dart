@@ -1,5 +1,12 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+final barProvider = StateNotifierProvider<SpeechBarModel, List<String>>(
+    (ref) => SpeechBarModel());
+
+final textProvider = Provider<String>((ref) {
+  return ref.watch(barProvider).join(" ");
+});
+
 class SpeechBarModel extends StateNotifier<List<String>> {
   SpeechBarModel() : super([]);
 

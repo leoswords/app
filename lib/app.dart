@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:leoswords/button.dart';
-import 'package:leoswords/main.dart';
 import 'package:leoswords/page.dart' as p;
+import 'package:leoswords/tts/service.dart';
+
+import 'models/speech_bar.dart';
 
 class App extends ConsumerWidget {
   const App({Key? key}) : super(key: key);
@@ -18,7 +20,7 @@ class App extends ConsumerWidget {
               builder: (context, ref, child) =>
                   Center(child: Text(ref.watch(textProvider))),
             ),
-            onTap: () => ref.read(ttsProvider).speak(ref.read(textProvider)),
+            onTap: () => ref.read(tts).speak(ref.read(textProvider)),
           )),
       Flexible(
           flex: 10,

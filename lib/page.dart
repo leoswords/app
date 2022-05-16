@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:leoswords/button.dart';
-import 'package:leoswords/main.dart';
+
+import 'models/speech_bar.dart';
 
 class Page {
   final String name;
