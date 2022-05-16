@@ -14,8 +14,11 @@ class App extends ConsumerWidget {
           flex: 90,
           child: GestureDetector(
             behavior: HitTestBehavior.opaque,
-            child: Center(child: Text(ref.watch(barProvider).join(" "))),
-            onTap: () => ref.read(barProvider.notifier).speak(),
+            child: Consumer(
+              builder: (context, ref, child) =>
+                  Center(child: Text(ref.watch(textProvider))),
+            ),
+            onTap: () => ref.read(ttsProvider).speak(ref.read(textProvider)),
           )),
       Flexible(
           flex: 10,
