@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:leoswords/button.dart';
 import 'package:leoswords/page.dart' as p;
-import 'package:leoswords/tts/service.dart';
+import 'package:leoswords/tts.dart';
 
 import 'models/speech_bar.dart';
 

@@ -15,12 +15,10 @@ class SpeechBarModel extends StateNotifier<List<String>> {
   }
 
   void backspace() {
-    if (state.isEmpty) return;
-    state = state.sublist(0, state.length - 1);
+    if (state.isNotEmpty) state = state.sublist(0, state.length - 1);
   }
 
   void clear() {
-    if (state.isEmpty) return;
-    state = [];
+    if (state.isNotEmpty) state = [];
   }
 }
